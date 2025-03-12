@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Service List - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 90vw;
+            overflow-x: auto;
+            background: #222;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 204, 0, 0.8);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ffcc00;
+            white-space: nowrap;
+        }
+
+        th {
+            background: #ffcc00;
+            color: #000;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background: #333;
+        }
+
+        tr:hover {
+            background: #ffcc00;
+            color: #000;
+            transition: 0.3s ease-in-out;
+        }
+
+        .delete-btn {
+            text-decoration: none;
+            color: #fff;
+            background: red;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: darkred;
+            box-shadow: 0px 0px 8px rgba(255, 0, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .delete-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2 th:text="${message}"></h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>IMAGE</th>
+                    <th>TITLE</th>
+                    <th>DESCRIPTION</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="service : ${allservices}">
+                    <td th:text="${service.id}"></td>
+                    <td><img th:src="@{/images/{img}(img=${service.image})}" alt="Service Image" width="100"></td>
+                    <td th:text="${service.title}"></td>
+                    <td th:text="${service.description}"></td>
+                    <td>
+                        <a th:href="@{/admin/deleteService/{id}(id=${service.id})}" class="delete-btn">
+                            DELETE
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+

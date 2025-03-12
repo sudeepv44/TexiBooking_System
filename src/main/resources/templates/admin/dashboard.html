@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Taxi Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: yellow;
+            text-align: center;
+        }
+
+        .header {
+            background-color: yellow;
+            color: black;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .admin-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .admin-links a {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: yellow;
+            color: black;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0px 5px 10px rgba(255, 255, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .admin-links a:hover {
+            background-color: black;
+            color: yellow;
+            transform: scale(1.1);
+            box-shadow: 0px 8px 15px rgba(255, 255, 0, 0.7);
+        }
+
+        .taxi-icon {
+            margin-top: 30px;
+            font-size: 50px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        hr {
+            width: 80%;
+            border: 1px solid yellow;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        🚖 Taxi Booking Admin Panel
+    </div>
+    
+    <h2 th:text="${message}"></h2>
+    <h2>Change Credentials</h2>
+
+    <div class="container">
+        <h2>Welcome, Admin</h2>
+        <p>Manage all contacts and bookings from here.</p>
+
+        <div class="admin-links">
+            <a href="readAllContacts">📞 Read All Contacts</a>
+            <a href="readAllBookings">📝 Read All Bookings</a>
+            <a href="readAllServices">Read All Services</a>
+            <a href="addService">Add Service</a>
+            <a href="changeCredentials">🔑 Change Credentials</a>
+        </div>
+
+        <hr>
+
+        <div class="admin-links">
+            <a href="/dologout">🚪 Logout</a>
+        </div>
+
+        <div class="taxi-icon">🚖</div>
+    </div>
+
+</body>
+</html>
